@@ -30,3 +30,23 @@
 </form>
 </body>
 </html>
+
+
+<!--
+<section>
+<@sf.form action="/products/create" method="post" modelAttribute="product">
+<input type="hidden" name="id" value="${product.id}">
+<dl>
+<dt>Название продукта:</dt>
+<input type="text" value="${product.name}" name="name" size="30" placeholder="" required>
+</dl>
+<dl>
+<dt>Описание продукта:</dt>
+<input type="text" value="${product.description}" name="description" style="height:100px" size="100"
+placeholder="" required>
+</dl>
+<button type="submit" value="Save">Save</button>
+</@sf.form>
+<button onclick="window.history.back()">Отменить</button>
+</section>
+-->

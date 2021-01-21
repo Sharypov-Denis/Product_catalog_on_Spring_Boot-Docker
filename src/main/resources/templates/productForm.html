@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/">Каталог продуктов</a>
+<form action="#" th:action="@{/}" th:object="${products}" method="post">
+
+    <input type="hidden" th:field="*{id}" id="id" placeholder="id">
+
+    <label for="name">name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="название продукта" required>
+
+    <label for="description">description</label>
+    <input type="text" th:field="*{description}" id="description" placeholder="описание продукта" required>
+
+    <!-- <input type="submit" value="Создать продукт">-->
+    <button type="submit">Save</button>
+    <button onclick="window.history.back()" type="button">Cancel</button>
+</form>
+</body>
+</html>

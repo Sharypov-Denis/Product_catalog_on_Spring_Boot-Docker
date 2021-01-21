@@ -45,21 +45,21 @@ public class ProductsController {
         return "products";
     }
 
-    @GetMapping("/delete")
-    public String delete(HttpServletRequest request) {
-        repository.delete(getId(request));
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Integer id) {
+        repository.delete(id);
         return "redirect:/";
     }
 
     @GetMapping("/create")
-    public String create(Model model) {
-        model.addAttribute("product", new Products("", ""));
+    public String create(Products products) {
         return "productForm";
     }
 
-    @GetMapping("/update")
-    public String update(Model model, HttpServletRequest request) {
-        model.addAttribute("product", repository.get(getId(request)));
+    @GetMapping("/update/{id}")
+    public String update(@PathVariable("id") Integer id, Model model) {
+        Products products = repository.get(id);
+        model.addAttribute("products", products);
         return "productForm";
     }
 
@@ -81,4 +81,29 @@ public class ProductsController {
         String paramId = Objects.requireNonNull(request.getParameter("id"));
         return Integer.parseInt(paramId);
     }
+    /*Для реализации отображение через JSP применять следующие методы
+
+      @GetMapping("/delete")
+    public String delete(HttpServletRequest request) {
+        repository.delete(getId(request));
+        return "redirect:/";
+    }
+
+     @GetMapping("/create")
+    public String create(Model model) {
+       model.addAttribute("product", new Products("", ""));
+        return "productForm";
+    }
+
+    @GetMapping("/update")
+    public String update(Model model, HttpServletRequest request) {
+        model.addAttribute("product", repository.get(getId(request)));
+        return "productForm";
+    }
+
+     private int getId(HttpServletRequest request) {
+        String paramId = Objects.requireNonNull(request.getParameter("id"));
+        return Integer.parseInt(paramId);
+    }
+     */
 }
