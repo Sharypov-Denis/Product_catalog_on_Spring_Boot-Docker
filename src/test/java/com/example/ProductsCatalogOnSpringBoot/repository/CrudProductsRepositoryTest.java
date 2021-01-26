@@ -24,6 +24,8 @@ public class CrudProductsRepositoryTest {
         crudProductsRepository.save(new Products("John", "john@domain.com"));
         assertThat(crudProductsRepository.findById(1)).isInstanceOf(Optional.class);
     }
+
+
 /*
     @Test
     public void whenFindingAllCustomers_thenCorrect() {
@@ -41,4 +43,5 @@ public class CrudProductsRepositoryTest {
                 -> new Products("john", "john@domain.com"));
         assertThat(product.getName()).isEqualTo("Bob");
     }
+
 }

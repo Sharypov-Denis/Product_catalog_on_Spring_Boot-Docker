@@ -13,6 +13,7 @@ public class Products {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
+    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)//добавил, т.к. hibernate ругается The increment size of the [global_seq] sequence is set to [50] in the entity mapping while the associated database sequence increment
     private Integer id;
 
     @NotBlank
