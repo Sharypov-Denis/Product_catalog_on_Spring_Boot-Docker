@@ -5,6 +5,7 @@ import com.example.ProductsCatalogOnSpringBoot.model.Products;
 import com.example.ProductsCatalogOnSpringBoot.repository.ProductsRepository;
 import com.example.ProductsCatalogOnSpringBoot.util.ProductValidation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,12 +13,18 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
 
 @Controller
 public class ProductsController {
@@ -81,6 +88,8 @@ public class ProductsController {
         String paramId = Objects.requireNonNull(request.getParameter("id"));
         return Integer.parseInt(paramId);
     }
+}
+
     /*Для реализации отображение через JSP применять следующие методы
 
       @GetMapping("/delete")
@@ -106,4 +115,99 @@ public class ProductsController {
         return Integer.parseInt(paramId);
     }
      */
+//}
+/*
+//REST
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+//@RestController///можно без этой аннотации
+@XmlAccessorType(XmlAccessType.NONE)
+@XmlRootElement(name = "products")
+@Path("jersey/")
+public class ProductsController {
+
+    @Autowired
+    private ProductsRepository repository;
+    @Autowired
+    private ProductValidation productValidation;
+
+    @GET
+    @Produces("application/json")//сериализация, для формата XML - "application/xml"
+    public List<Products> getAllUsers() {
+        List<Products> productsList = new ArrayList<>();
+        productsList = repository.getAll();
+        return productsList;
+    }
+
+    @GET
+    @Path("/{id}")
+    @Produces("application/json")//сериализация, для формата XML - "application/xml"
+    public Response getById(@PathParam("id") int id) throws URISyntaxException {
+        Products products = repository.get(id);
+        if (products == null) {
+            return Response.status(404).build();
+        }
+        return Response
+                .status(200)
+                .entity(products)
+                .contentLocation(new URI("/user-management/" + id)).build();
+    }
+
+    @DELETE
+    @Path("/delete/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Response deleteUser(@PathParam("id") int id) throws URISyntaxException {
+        Products products = repository.get(id);
+        if (products != null) {
+            repository.delete(id);
+            return Response.status(200).build();
+        }
+        return Response.status(404).build();
+    }
+
+    @POST
+    @Consumes("application/json")//ДЕсериализация, для формата XML - "application/xml"
+    public Response create(Products products) throws URISyntaxException {
+        if (products.getName() == null || products.getDescription() == null) {
+            return Response.status(400).entity("Please provide all mandatory inputs").build();
+        }
+        repository.save(products);
+        return Response.status(201).entity(products).build();
+    }
+
+    @PUT
+    @Path("/update/{id}")
+    @Consumes("application/json")//ДЕсериализация, для формата XML - "application/xml"
+    @Produces("application/json")//сериализация, для формата XML - "application/xml"
+    public Response update(@PathParam("id") int id, Products products) throws URISyntaxException
+    {
+        Products newProducts = repository.get(id);
+        if(newProducts == null) {
+            return Response.status(404).build();
+        }
+        newProducts.setName(products.getName());
+        newProducts.setDescription(products.getDescription());
+       repository.update(newProducts);
+        return Response.status(200).entity(newProducts).build();
+    }
+
+    private int getId(HttpServletRequest request) {
+        String paramId = Objects.requireNonNull(request.getParameter("id"));
+        return Integer.parseInt(paramId);
+    }
+
 }
+
+ */
+
