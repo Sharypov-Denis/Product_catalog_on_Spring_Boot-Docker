@@ -17,6 +17,10 @@
 * Junit 4
 * Maven
 
+| Technology | Badge |
+|:-----------:|:-----:|
+| Travis CI | [![Build Status](https://travis-ci.com/github/Sharypov-Denis/Product_catalog_on_Spring_Boot_plus_Docker.svg?branch=master)](https://travis-ci.com/github/Sharypov-Denis/Product_catalog_on_Spring_Boot_plus_Docker) |
+
 # Build and run 
 1. ./mvnw package && java -jar target/product-catalog-cn-spring-boot-0.0.1-SNAPSHOT.jar
 2. docker build -t product-catalog-cn-spring-boot:0.0.1 .
