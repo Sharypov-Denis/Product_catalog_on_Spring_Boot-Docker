@@ -1,4 +1,7 @@
-В разработке!!!
+| Technology | Badge |
+|:-----------:|:-----:|
+| Travis CI | [![Build Status](https://travis-ci.com/Sharypov-Denis/Product_catalog_on_Spring_Boot_plus_Docker.svg?branch=master)](https://travis-ci.com/github/Sharypov-Denis/Product_catalog_on_Spring_Boot_plus_Docker) |
+
 # The task is: Implement a small web application - Product Catalog, packaging in container Docker
 
 # Functionality: 
@@ -16,10 +19,6 @@
 * Stream API
 * Junit 4
 * Maven
-
-| Technology | Badge |
-|:-----------:|:-----:|
-| Travis CI | [![Build Status](https://travis-ci.com/Sharypov-Denis/Product_catalog_on_Spring_Boot_plus_Docker.svg?branch=master)](https://travis-ci.com/github/Sharypov-Denis/Product_catalog_on_Spring_Boot_plus_Docker) |
 
 # Build and run 
 1. ./mvnw package && java -jar target/product-catalog-cn-spring-boot-0.0.1-SNAPSHOT.jar

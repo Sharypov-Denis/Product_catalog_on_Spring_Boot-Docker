@@ -11,9 +11,9 @@ cache:
     - $HOME/.m2
 
 # Notifications https://docs.travis-ci.com/user/notifications/
-notifications:
-  email:
-    recipients:
-      - sharypov.denis@gmail.com
-    on_success: always # default: change
-    on_failure: always # default: always
+  # notifications:
+    #  email:
+      #  recipients:
+    #  - sharypov.denis@gmail.com
+    #  on_success: always # default: change
+    #  on_failure: always # default: always
