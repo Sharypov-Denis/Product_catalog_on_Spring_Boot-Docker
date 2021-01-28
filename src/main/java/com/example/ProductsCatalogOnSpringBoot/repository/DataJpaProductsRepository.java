@@ -3,8 +3,6 @@ package com.example.ProductsCatalogOnSpringBoot.repository;
 
 import com.example.ProductsCatalogOnSpringBoot.model.Products;
 import com.example.ProductsCatalogOnSpringBoot.util.ValidationUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +28,7 @@ public class DataJpaProductsRepository implements ProductsRepository {
     }
 
     @Override
+    @Transactional
     public Products update(Products products) {
      //   log.info("update Product {}", products.getId());
         return repository.save(products);
@@ -41,6 +40,7 @@ public class DataJpaProductsRepository implements ProductsRepository {
         return repository.findById(id).orElse(null);
     }
 
+    @Override
     @Transactional
     public void delete(Integer id) {
         repository.deleteById(id);
